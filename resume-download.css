@@ -1,0 +1,350 @@
+/* ============================================================
+   Resume PDF — A4 landscape, editorial dark (matches site theme)
+   ============================================================ */
+@page {
+  size: 297mm 210mm;
+  margin: 0;
+}
+
+:root {
+  --accent: #ff5a2e;
+  --bg: #0c0c0c;
+  --bg-elev: #161616;
+  --fg: #f5f4ef;
+  --fg-muted: #a3a3a3;
+  --fg-faint: #5c5c5c;
+  --border: rgba(255, 255, 255, 0.12);
+  --hairline: rgba(255, 255, 255, 0.06);
+
+  --font-display: "Instrument Serif", "Source Han Serif SC", "Songti SC", Georgia, serif;
+  --font-body: "Inter", "PingFang SC", "Helvetica Neue", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+
+  /* PDF type scale — 4 levels only */
+  --pdf-title: 28pt;
+  --pdf-stat: 13pt;
+  --pdf-body: 9.5pt;
+  --pdf-meta: 8pt;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--pdf-body);
+  line-height: 1.55;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.acc {
+  color: var(--accent);
+}
+
+/* ─── Page frame ──────────────────────────────────────────── */
+.page {
+  width: 297mm;
+  height: 210mm;
+  padding: 14mm 16mm;
+  background: var(--bg);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 10mm;
+  overflow: hidden;
+}
+
+/* ─── Head ────────────────────────────────────────────────── */
+.page-head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 12mm;
+  padding-bottom: 6mm;
+  border-bottom: 1px solid var(--border);
+}
+
+.page-head .eyebrow {
+  margin: 0 0 4mm;
+  font-family: var(--font-body);
+  font-size: 11pt;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #e8e8e3;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--pdf-title);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}
+
+.stat-row {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 14mm;
+  align-items: flex-end;
+}
+
+.stat-row .stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.stat-n {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 3px;
+  font-family: var(--font-display);
+  font-size: var(--pdf-stat);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--fg);
+}
+
+.stat-n em {
+  font-size: 0.4em;
+  font-style: normal;
+  font-family: var(--font-mono);
+  color: var(--fg-faint);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.stat-l {
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-size: var(--pdf-meta);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  white-space: nowrap;
+}
+
+/* ─── Body: bio on top, two columns below ─────────────────── */
+.page-body {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 8mm;
+  align-items: start;
+  min-height: 0;
+}
+
+.bio-block {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5mm;
+  width: 200mm;
+  max-width: 100%;
+}
+
+.detail-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  column-gap: 14mm;
+  align-items: start;
+  padding-top: 6mm;
+  border-top: 1px solid var(--hairline);
+}
+
+.col {
+  min-width: 0;
+}
+
+.col-label {
+  margin: 0 0 4mm;
+  font-family: var(--font-mono);
+  font-size: var(--pdf-meta);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.col-skills {
+  padding-left: 12mm;
+  border-left: 1px solid var(--hairline);
+}
+
+/* ─── Bio paragraph ───────────────────────────────────────── */
+.lede,
+.lede-en {
+  margin: 0;
+  width: 100%;
+  text-align: justify;
+  text-justify: inter-character;
+  hyphens: auto;
+}
+
+.lede {
+  font-size: var(--pdf-body);
+  line-height: 1.65;
+  color: var(--fg);
+}
+
+.lede strong {
+  font-weight: 500;
+}
+
+.lede-en {
+  font-size: var(--pdf-meta);
+  line-height: 1.65;
+  color: var(--fg-faint);
+}
+
+/* ─── Timeline ────────────────────────────────────────────── */
+.timeline .t-row {
+  display: grid;
+  grid-template-columns: 28mm 1fr;
+  gap: 4mm;
+  padding: 3mm 0;
+  border-bottom: 1px dashed var(--hairline);
+}
+
+.timeline .t-row:last-child {
+  border-bottom: none;
+}
+
+.t-year {
+  font-family: var(--font-mono);
+  font-size: var(--pdf-body);
+  letter-spacing: 0.04em;
+  color: var(--fg-muted);
+  white-space: nowrap;
+}
+
+.t-body h5 {
+  margin: 0;
+  font-size: var(--pdf-body);
+  font-weight: 500;
+  color: var(--fg);
+}
+
+.t-org {
+  margin-top: 2px;
+  font-size: var(--pdf-meta);
+  color: var(--fg-muted);
+}
+
+/* ─── Skills ──────────────────────────────────────────────── */
+.skill-group {
+  padding: 3mm 0;
+  border-top: 1px dashed var(--hairline);
+}
+
+.skill-group:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.skill-head {
+  margin-bottom: 2.5mm;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.skill-k {
+  font-family: var(--font-mono);
+  font-size: var(--pdf-meta);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.skill-l {
+  font-family: var(--font-mono);
+  font-size: var(--pdf-meta);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 5px;
+}
+
+.pill {
+  font-family: var(--font-mono);
+  font-size: var(--pdf-meta);
+  letter-spacing: 0.02em;
+  padding: 2.5px 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--fg-muted);
+  white-space: nowrap;
+}
+
+/* ─── Footer / contact strip ──────────────────────────────── */
+.page-foot {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14mm;
+  padding-top: 6mm;
+  border-top: 1px solid var(--border);
+}
+
+.foot-label,
+.foot-meta {
+  font-family: var(--font-mono);
+  font-size: var(--pdf-meta);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+
+.contact-list {
+  display: flex;
+  align-items: center;
+  gap: 14mm;
+  flex-wrap: wrap;
+}
+
+.contact-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--fg-muted);
+  flex-shrink: 0;
+}
+
+.contact-key {
+  font-family: var(--font-mono);
+  font-size: var(--pdf-meta);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.contact-val {
+  font-family: var(--font-mono);
+  font-size: var(--pdf-body);
+  letter-spacing: 0.02em;
+  color: var(--fg);
+}

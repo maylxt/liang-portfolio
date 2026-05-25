@@ -1,0 +1,14 @@
+{
+  "name": "liang-portfolio-pdf",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "pdf": "node scripts/capture-site-pdf.mjs",
+    "pdf:simple": "node scripts/generate-resume-pdf.mjs",
+    "pdf:resume": "node scripts/generate-resume-download.mjs"
+  },
+  "devDependencies": {
+    "pdf-lib": "^1.17.1",
+    "puppeteer": "^24.2.0"
+  }
+}

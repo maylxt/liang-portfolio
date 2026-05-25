@@ -1,0 +1,69 @@
+/* Applied only during PDF capture (html.pdf-export-mode) — not on live site */
+
+html.pdf-export-mode .twk-panel,
+html.pdf-export-mode .art-cursor,
+html.pdf-export-mode .cursor-glow {
+  display: none !important;
+}
+
+html.pdf-export-mode .hero-strip .scroll {
+  display: none !important;
+}
+
+html.pdf-export-mode .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+html.pdf-export-mode header.hero {
+  height: auto !important;
+  min-height: 560px !important;
+  overflow: visible !important;
+}
+
+html.pdf-export-mode .hero-copy,
+html.pdf-export-mode .hero-copy-cn {
+  height: auto !important;
+}
+
+html.pdf-export-mode .section {
+  padding: 48px 0 !important;
+  overflow: visible !important;
+}
+
+html.pdf-export-mode .section.inline-case {
+  margin-top: 0 !important;
+}
+
+html.pdf-export-mode .cmp .handle,
+html.pdf-export-mode .cmp .lab {
+  display: none !important;
+}
+
+html.pdf-export-mode .cmp .layer.before {
+  opacity: 0 !important;
+}
+
+html.pdf-export-mode .cmp .layer.after {
+  clip-path: inset(0 0 0 0) !important;
+  opacity: 1 !important;
+}
+
+html.pdf-export-mode .vision-section .vision-row__info,
+html.pdf-export-mode .vision-section .vision-row__shade,
+html.pdf-export-mode #fx-ops .fx .info,
+html.pdf-export-mode #fx-minigame .fx .info {
+  opacity: 1 !important;
+}
+
+html.pdf-export-mode .vision-row__card:hover {
+  transform: none !important;
+}
+
+html.pdf-export-mode .fx:hover {
+  transform: none !important;
+}
+
+html.pdf-export-mode .fx:hover .img {
+  transform: none !important;
+}
