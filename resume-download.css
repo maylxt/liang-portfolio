@@ -312,7 +312,7 @@ body {
 .contact-list {
   display: flex;
   align-items: center;
-  gap: 14mm;
+  gap: 10mm;
   flex-wrap: wrap;
 }
 
