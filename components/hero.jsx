@@ -231,20 +231,20 @@ function Hero({ videoSrc, posterSrc }) {
         </a>
       </nav>
 
-      <section className="hero-copy hero-copy-cn">
-        <span className="hero-eyebrow animate-fade-rise">
+      <section className="hero-copy hero-copy-cn" style={{ height: "447px" }}>
+        <span className="hero-eyebrow animate-fade-rise" style={{ letterSpacing: "4.4px", height: "0px" }}>
           <i className="dot" /> PORTFOLIO · 2026
         </span>
         <h1 className="hero-bigtitle animate-fade-rise-delay">
-          <span className="hb-row hb-row-1">Douyin Effects &amp; AIGC Effects Design</span>
-          <span className="hb-div" aria-hidden>—</span>
+          <span className="hb-row hb-row-1" style={{ textAlign: "center", fontFamily: "Verdana", fontWeight: "600", width: "717px", fontSize: "58px", opacity: "0.85", letterSpacing: "-1.5px", lineHeight: "1.05", height: "125px" }}>Douyin Effects & AIGC Effects Design <em></em></span>
+          <span className="hb-div" aria-hidden style={{ lineHeight: "0", width: "0px" }}>—</span>
           <span className="hb-row hb-row-2"></span>
         </h1>
-        <p className="sub sub-lead animate-fade-rise-delay-2">
-          我是<strong>梁小婷</strong> — 字节跳动 <strong>AI 效果设计师</strong>。
+        <p className="sub sub-lead animate-fade-rise-delay-2" style={{ margin: "-19.7812px 0px 0px", fontSize: "15px", width: "540px", height: "143px" }}>
+          我是<strong>梁小婷</strong> — 字节跳动 <strong style={{ fontWeight: "500" }}>AI 效果设计师</strong>。
           七年专注于抖音特效与 AIGC 效果，
           <br />把短暂的灵感，变成数百万人沉浸的体验。
-          <span className="sub-en">AI EFFECT DESIGNER @ BYTEDANCE · 7 YRS · BEIJING</span>
+          <span className="sub-en" style={{ width: "508px", letterSpacing: "0.8px", fontSize: "10px", height: "1px" }}>AI EFFECT DESIGNER @ BYTEDANCE · 7 YRS · BEIJING</span>
         </p>
       </section>
 

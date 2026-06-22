@@ -412,17 +412,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
   display: block;
   font-size: clamp(40px, 6.2vw, 92px);
 }
-.hero-bigtitle .hb-row-1 {
-  font-family: Verdana, var(--font-body), sans-serif;
-  font-weight: 600;
-  font-size: clamp(32px, 5.2vw, 58px);
-  letter-spacing: -0.026em;
-  line-height: 1.08;
-  opacity: 0.85;
-  text-align: center;
-  max-width: 100%;
-  text-wrap: balance;
-}
 .hero-bigtitle .hb-row-1 em {
   font-style: italic;
   font-weight: 400;
@@ -455,23 +444,49 @@ button { font: inherit; color: inherit; cursor: pointer; }
     min-height: 100dvh;
     height: auto;
   }
-  .hero-copy,
-  .hero-copy-cn {
+  .hero-copy.hero-copy-cn {
+    height: auto !important;
     width: 100%;
     max-width: 100%;
     padding: clamp(12px, 3vh, 28px) var(--gutter) calc(88px + env(safe-area-inset-bottom, 0px));
   }
   .hero-bigtitle { max-width: none; width: 100%; }
   .hero-bigtitle .hb-row-1 {
-    font-size: clamp(24px, 6.8vw, 40px);
-    letter-spacing: -0.02em;
-    line-height: 1.12;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    font-size: clamp(24px, 6.8vw, 40px) !important;
+    letter-spacing: -0.02em !important;
+    line-height: 1.12 !important;
   }
-  .hero-bigtitle .hb-row-2 { letter-spacing: 0.18em; }
+  .hero-bigtitle .hb-div {
+    display: none !important;
+  }
+  .hero-bigtitle .hb-row-2 {
+    display: none;
+    letter-spacing: 0.18em;
+  }
+  .hero-copy-cn .sub-lead {
+    width: 100% !important;
+    height: auto !important;
+    margin: 20px 0 0 !important;
+    font-size: clamp(15px, 4.1vw, 18px) !important;
+    line-height: 1.6 !important;
+    max-width: 100%;
+  }
+  .hero-copy-cn .sub-lead .sub-en {
+    width: 100% !important;
+    height: auto !important;
+    margin-top: 14px;
+    font-size: 9px !important;
+    letter-spacing: 0.08em !important;
+    line-height: 1.5;
+  }
   .hero-eyebrow {
+    height: auto !important;
     margin-bottom: 18px;
     font-size: 10px;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.16em !important;
     padding: 6px 12px;
   }
   .hero-nav {
@@ -512,15 +527,15 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 @media (max-width: 720px) {
   .hero-copy-cn .sub-lead {
-    margin-top: 20px;
-    font-size: clamp(15px, 4.1vw, 18px);
+    margin-top: 20px !important;
+    font-size: clamp(15px, 4.1vw, 18px) !important;
     line-height: 1.6;
     max-width: 100%;
   }
   .hero-copy-cn .sub-lead .sub-en {
     margin-top: 14px;
-    font-size: 9px;
-    letter-spacing: 0.08em;
+    font-size: 9px !important;
+    letter-spacing: 0.08em !important;
     line-height: 1.5;
   }
 }
