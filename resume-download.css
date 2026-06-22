@@ -145,11 +145,36 @@ body {
 }
 
 .bio-block {
+  display: grid;
+  grid-template-columns: 34mm 1fr;
+  gap: 8mm;
+  align-items: start;
+  width: 100%;
+  max-width: 100%;
+}
+
+.bio-portrait {
+  width: 34mm;
+  height: 34mm;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #000;
+}
+
+.bio-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.bio-text {
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 3.5mm;
-  width: 200mm;
-  max-width: 100%;
 }
 
 .detail-row {
