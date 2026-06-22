@@ -148,7 +148,7 @@ body {
   display: grid;
   grid-template-columns: 34mm 1fr;
   gap: 8mm;
-  align-items: start;
+  align-items: center;
   width: 100%;
   max-width: 100%;
 }
@@ -336,15 +336,26 @@ body {
 
 .contact-list {
   display: flex;
+  flex-direction: column;
+  gap: 3.5mm;
+}
+
+.contact-row {
+  display: flex;
   align-items: center;
   gap: 10mm;
   flex-wrap: wrap;
 }
 
 .contact-item {
-  display: inline-flex;
+  display: inline-grid;
+  grid-template-columns: 20px 13mm 1fr;
   align-items: center;
-  gap: 8px;
+  column-gap: 8px;
+}
+
+.contact-item--wide {
+  grid-template-columns: 20px auto 1fr;
 }
 
 .contact-icon {
@@ -365,6 +376,7 @@ body {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--fg-muted);
+  white-space: nowrap;
 }
 
 .contact-key--cn {
