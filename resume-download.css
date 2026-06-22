@@ -342,6 +342,13 @@ body {
   color: var(--fg-muted);
 }
 
+.contact-key--cn {
+  font-family: var(--font-body);
+  letter-spacing: 0.02em;
+  text-transform: none;
+  white-space: nowrap;
+}
+
 .contact-val {
   font-family: var(--font-mono);
   font-size: var(--pdf-body);
