@@ -65,9 +65,9 @@ const VISION_ITEMS = [
 const VISION_VIDEO = {
   src: "assets/vision-ok.mp4",
   poster: "assets/vision-ok-poster.jpg",
-  title: "OK · AI 视觉短片",
+  title: "GLITCH GIRLS · AI 视频短片",
   duration: "0:25",
-  desc: "AIGC 创作的赛博朋克风格视觉短片。以动态径向模糊与彩虹光轨营造高速穿梭的数字化幻境，双辫人物造型与工业场景强化未来感叙事，探索 AI 生成在角色视觉与氛围光影上的表达边界。",
+  desc: "AIGC 创作的赛博朋克风格视频短片。以动态径向模糊与彩虹光轨营造高速穿梭的数字化幻境，双辫人物造型与工业场景强化未来感叙事，探索 AI 生成在角色视频与氛围光影上的表达边界。",
 };
 
 /* Effects — 4 sub-modules under the same section */
