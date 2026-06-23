@@ -62,6 +62,14 @@ const VISION_ITEMS = [
   { img: "assets/vision-05-wonderful-night.jpg", title: "Wonderful Night",  sub: "LANDSCAPE KV · 2026",             imgPos: "center top" },
 ];
 
+const VISION_VIDEO = {
+  src: "assets/vision-ok.mp4",
+  poster: "assets/vision-ok-poster.jpg",
+  title: "OK · AI 视觉短片",
+  duration: "0:25",
+  desc: "AIGC 创作的赛博朋克风格视觉短片。以动态径向模糊与彩虹光轨营造高速穿梭的数字化幻境，双辫人物造型与工业场景强化未来感叙事，探索 AI 生成在角色视觉与氛围光影上的表达边界。",
+};
+
 /* Effects — 4 sub-modules under the same section */
 const EFFECT_GROUPS = [
   {
@@ -237,7 +245,7 @@ function App() {
       <About />
       <PortraitSection items={PORTRAIT_ITEMS} mode={PROD_CONFIG.compareMode} />
       <InlineCase c={CASE_DEEP[0]} />
-      <VisionSection items={VISION_ITEMS} />
+      <VisionSection items={VISION_ITEMS} video={VISION_VIDEO} />
       <EffectsSection groups={EFFECT_GROUPS} inlineCaseAfter={{ douyin: CASE_DEEP[1] }} />
       <ContactSection />
     </>

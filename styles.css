@@ -2282,6 +2282,105 @@ html.art-cursor-press .art-cursor.dot {
   .xhs-strip-label { justify-content: center; }
 }
 
+/* ─── Vision featured video (click-to-play) ───────────────── */
+.vision-featured-video {
+  margin-top: clamp(36px, 5vw, 56px);
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(28px, 4vw, 48px);
+  align-items: center;
+  padding: clamp(24px, 3vw, 36px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  background: var(--bg-card);
+}
+.vision-featured-video__tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.vision-featured-video__title {
+  margin: 0;
+  font-size: clamp(24px, 2.4vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--fg);
+}
+.vision-featured-video__duration {
+  margin: 10px 0 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.vision-featured-video__desc {
+  margin: 18px 0 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--fg-muted);
+  text-wrap: pretty;
+}
+.vision-featured-video__player {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-img);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #0a0a0c;
+}
+.vision-featured-video__media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #0a0a0c;
+}
+.vision-featured-video__play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.28);
+  color: #fff;
+  transition: background 0.25s ease;
+}
+.vision-featured-video__play:hover {
+  background: rgba(0, 0, 0, 0.42);
+}
+.vision-featured-video__play svg {
+  width: clamp(52px, 8vw, 72px);
+  height: clamp(52px, 8vw, 72px);
+  padding: clamp(14px, 2vw, 20px);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+.vision-featured-video__play:hover svg {
+  transform: scale(1.06);
+  background: rgba(255, 255, 255, 0.22);
+}
+.vision-featured-video__player.is-playing .vision-featured-video__media {
+  object-fit: contain;
+}
+@media (max-width: 880px) {
+  .vision-featured-video {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ─── Effects groups (4 sub-modules) ──────────────────────── */
 .fx-groups { display: grid; gap: clamp(64px, 8vw, 110px); }
 .fx-group-head {

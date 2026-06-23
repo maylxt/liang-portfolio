@@ -7,7 +7,56 @@ const { useState, useEffect, useRef } = React;
    ============================================================ */
 const XHS_URL = "https://www.xiaohongshu.com/user/profile/5aebdcee4eacab19e4f586b4";
 
-function VisionSection({ items }) {
+function VisionFeaturedVideo({ video }) {
+  const videoRef = useRef(null);
+  const [playing, setPlaying] = useState(false);
+
+  const handlePlay = () => {
+    const el = videoRef.current;
+    if (!el) return;
+    el.play().catch(() => {});
+    setPlaying(true);
+  };
+
+  const handleStop = () => setPlaying(false);
+
+  return (
+    <article className="vision-featured-video">
+      <div className="vision-featured-video__meta">
+        <span className="vision-featured-video__tag">VIDEO · AIGC</span>
+        <h3 className="vision-featured-video__title">{video.title}</h3>
+        <p className="vision-featured-video__duration">时长 · {video.duration}</p>
+        <p className="vision-featured-video__desc">{video.desc}</p>
+      </div>
+      <div className={`vision-featured-video__player${playing ? " is-playing" : ""}`}>
+        <video
+          ref={videoRef}
+          className="vision-featured-video__media"
+          src={video.src}
+          poster={video.poster}
+          playsInline
+          controls={playing}
+          preload="metadata"
+          onEnded={handleStop}
+          onPause={handleStop}
+        />
+        {!playing && (
+          <button
+            type="button"
+            className="vision-featured-video__play"
+            onClick={handlePlay}
+            aria-label={`播放 ${video.title}`}>
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden>
+              <path d="M8 5.14v13.72L19 12 8 5.14Z" />
+            </svg>
+          </button>
+        )}
+      </div>
+    </article>
+  );
+}
+
+function VisionSection({ items, video }) {
   return (
     <section className="section vision-section" id="vision" data-screen-label="04 AI Vision"
       style={{ background: "var(--bg-elev)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
@@ -69,6 +118,8 @@ function VisionSection({ items }) {
           <span className="xhs-strip-url">@梁小婷 · xiaohongshu.com/user/profile</span>
           <span className="xhs-strip-arrow">↗</span>
         </a>
+
+        {video ? <VisionFeaturedVideo video={video} /> : null}
       </div>
     </section>
   );
