@@ -22,12 +22,6 @@ function VisionFeaturedVideo({ video }) {
 
   return (
     <article className="vision-featured-video">
-      <div className="vision-featured-video__meta">
-        <span className="vision-featured-video__tag">VIDEO · AIGC</span>
-        <h3 className="vision-featured-video__title">{video.title}</h3>
-        <p className="vision-featured-video__duration">时长 · {video.duration}</p>
-        <p className="vision-featured-video__desc">{video.desc}</p>
-      </div>
       <div className={`vision-featured-video__player${playing ? " is-playing" : ""}`}>
         <video
           ref={videoRef}
@@ -52,22 +46,28 @@ function VisionFeaturedVideo({ video }) {
           </button>
         )}
       </div>
+      <div className="vision-featured-video__meta">
+        <span className="vision-featured-video__tag">VIDEO · AIGC</span>
+        <h3 className="vision-featured-video__title">{video.title}</h3>
+        <p className="vision-featured-video__duration">时长 · {video.duration}</p>
+        <p className="vision-featured-video__desc">{video.desc}</p>
+      </div>
     </article>
   );
 }
 
 function VisionSection({ items, video }) {
   return (
-    <section className="section vision-section" id="vision" data-screen-label="04 AI Vision"
+    <section className="section vision-section" id="vision" data-screen-label="04 AIGC"
       style={{ background: "var(--bg-elev)", borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)" }}>
       <div className="wrap" style={{ position: "relative" }}>
-        <div className="bg-word">VISION</div>
+        <div className="bg-word">AIGC</div>
         <div className="section-head">
           <div className="lhs">
             <span className="eyebrow">03 / 作品</span>
             <h2>
               <span className="vision-title">
-                <span className="acc">AI 视觉</span>探索
+                <span className="acc">AIGC</span>探索
               </span>
               <br />
               <span className="vision-subline">个人 AIGC 实验场</span>
@@ -83,6 +83,8 @@ function VisionSection({ items, video }) {
             </a>
           </div>
         </div>
+
+        {video ? <VisionFeaturedVideo video={video} /> : null}
 
         <div className="vision-row-wrap">
           <div className="vision-row" role="list">
@@ -113,13 +115,11 @@ function VisionSection({ items, video }) {
         <a href={XHS_URL} target="_blank" rel="noopener" className="xhs-strip">
           <span className="xhs-strip-label">
             <span className="xhs-dot" />
-            更多 AI 视觉探索 · ON XIAOHONGSHU
+            更多 AIGC 探索 · ON XIAOHONGSHU
           </span>
           <span className="xhs-strip-url">@梁小婷 · xiaohongshu.com/user/profile</span>
           <span className="xhs-strip-arrow">↗</span>
         </a>
-
-        {video ? <VisionFeaturedVideo video={video} /> : null}
       </div>
     </section>
   );
