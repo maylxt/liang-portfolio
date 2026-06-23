@@ -2282,9 +2282,57 @@ html.art-cursor-press .art-cursor.dot {
   .xhs-strip-label { justify-content: center; }
 }
 
+/* ─── Vision sub-blocks: AI 视觉 / AI 视频 ─────────────────── */
+.vision-block--visual {
+  margin-top: clamp(8px, 2vw, 16px);
+}
+.vision-block--video {
+  margin-top: clamp(36px, 5vw, 56px);
+}
+.vision-block-head {
+  position: relative;
+  padding-bottom: 22px;
+  margin-bottom: 22px;
+}
+.vision-block-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.vision-block-title {
+  margin: 8px 0 0;
+  font-size: clamp(24px, 2.4vw, 32px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+.vision-block-en {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-faint);
+}
+.vision-block-rule {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--border);
+}
+.vision-block--visual .vision-row-wrap {
+  margin-top: 0;
+  padding-bottom: 0;
+}
+
 /* ─── Vision featured video (click-to-play) ───────────────── */
 .vision-featured-video {
-  margin: 0 0 clamp(36px, 5vw, 56px);
+  margin: 0;
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
   gap: clamp(28px, 4vw, 48px);
