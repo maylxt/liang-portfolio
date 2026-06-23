@@ -10,48 +10,15 @@ const XHS_URL = "https://www.xiaohongshu.com/user/profile/5aebdcee4eacab19e4f586
 function VisionFeaturedVideo({ video }) {
   const videoRef = useRef(null);
   const [playing, setPlaying] = useState(false);
-  const [volume, setVolume] = useState(0.85);
-  const [muted, setMuted] = useState(false);
-
-  const syncVolume = (el, v, m) => {
-    if (!el) return;
-    el.volume = v;
-    el.muted = m;
-  };
 
   const handlePlay = () => {
     const el = videoRef.current;
     if (!el) return;
-    syncVolume(el, volume, muted);
     el.play().catch(() => {});
     setPlaying(true);
   };
 
   const handleStop = () => setPlaying(false);
-
-  const handleVolume = (e) => {
-    const el = videoRef.current;
-    const v = parseFloat(e.target.value);
-    if (!el || !Number.isFinite(v)) return;
-    const nextMuted = v === 0;
-    syncVolume(el, v, nextMuted);
-    setVolume(v);
-    setMuted(nextMuted);
-  };
-
-  const toggleMute = () => {
-    const el = videoRef.current;
-    if (!el) return;
-    if (el.muted || el.volume === 0) {
-      const next = volume > 0 ? volume : 0.85;
-      syncVolume(el, next, false);
-      setVolume(next);
-      setMuted(false);
-    } else {
-      syncVolume(el, el.volume, true);
-      setMuted(true);
-    }
-  };
 
   return (
     <article className="vision-featured-video">
@@ -69,37 +36,6 @@ function VisionFeaturedVideo({ video }) {
           onEnded={handleStop}
           onPause={handleStop}
         />
-        {playing && (
-          <div className="vision-featured-video__volume">
-            <button
-              type="button"
-              className="vision-featured-video__mute"
-              onClick={toggleMute}
-              aria-label={muted ? "取消静音" : "静音"}>
-              {muted || volume === 0 ? (
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden>
-                  <path d="M11 5 6 9H3v6h3l5 4V5Zm9.59 3.41L18.17 8.83 16 11l2.17 2.17-1.41 1.42L14.59 12.4 12.41 14.6l1.42 1.41L16 13.83l2.17 2.17 1.42-1.41L17.41 12l2.18-2.17-1.42-1.42Z" />
-                </svg>
-              ) : (
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden>
-                  <path d="M11 5 6 9H3v6h3l5 4V5Zm4.5 7c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03ZM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77Z" />
-                </svg>
-              )}
-            </button>
-            <div className="vision-featured-video__volume-popup">
-              <input
-                type="range"
-                className="vision-featured-video__volume-vertical"
-                min={0}
-                max={1}
-                step={0.05}
-                value={muted ? 0 : volume}
-                onChange={handleVolume}
-                aria-label="音量"
-              />
-            </div>
-          </div>
-        )}
         {!playing && (
           <button
             type="button"
