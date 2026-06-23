@@ -2420,82 +2420,15 @@ html.art-cursor-press .art-cursor.dot {
   transform: scale(1.06);
   background: rgba(255, 255, 255, 0.22);
 }
-.vision-featured-video__player.is-playing .vision-featured-video__media,
-.vision-featured-video__player.is-started .vision-featured-video__media {
+.vision-featured-video__player.is-playing .vision-featured-video__media {
   object-fit: contain;
 }
-.vision-featured-video__media::-webkit-media-controls {
-  display: none !important;
+/* Hide native overflow menu (three dots) while keeping default controls */
+.vision-featured-video__media::-webkit-media-controls-overflow-button {
+  display: none;
 }
-.vision-featured-video__bar {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.72) 100%);
-  color: #fff;
-}
-.vision-featured-video__ctl {
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border: none;
-  padding: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-.vision-featured-video__ctl:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-.vision-featured-video__scrub {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  align-items: center;
-}
-.vision-featured-video__scrub input[type="range"],
-.vision-featured-video__volume {
-  width: 100%;
-  margin: 0;
-  direction: ltr;
-  accent-color: var(--accent);
-  cursor: pointer;
-}
-.vision-featured-video__volume-wrap {
-  flex-shrink: 0;
-  width: clamp(64px, 10vw, 88px);
-  display: flex;
-  align-items: center;
-}
-.vision-featured-video__time {
-  flex-shrink: 0;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.06em;
-  color: rgba(255, 255, 255, 0.82);
-  white-space: nowrap;
-}
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+.vision-featured-video__media::-internal-media-controls-overflow-button {
+  display: none;
 }
 @media (max-width: 880px) {
   .vision-featured-video {
