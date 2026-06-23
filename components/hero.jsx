@@ -177,6 +177,44 @@ function ParticleHeadline({ text = "LIANG XIAOTING", subtext = "AI EFFECT DESIGN
   return <canvas ref={cvsRef} className="hero-particles" aria-hidden />;
 }
 
+const RESUME_PDF = "assets/resume-liangxiaoting-13522341227.pdf";
+const RESUME_FILENAME = "liang-xiaoting-resume.pdf";
+
+function handleResumeDownload(e) {
+  const ua = navigator.userAgent || "";
+  const url = e.currentTarget.getAttribute("href") || RESUME_PDF;
+
+  if (/MicroMessenger/i.test(ua)) {
+    e.preventDefault();
+    window.alert("微信内无法直接下载 PDF，请点击右上角 ··· 选择「在浏览器打开」后再点下载简历。");
+    return;
+  }
+
+  if (/Android/i.test(ua)) {
+    e.preventDefault();
+    fetch(url)
+      .then((res) => {
+        if (!res.ok) throw new Error("download failed");
+        return res.blob();
+      })
+      .then((blob) => {
+        const pdfBlob = new Blob([blob], { type: "application/pdf" });
+        const blobUrl = URL.createObjectURL(pdfBlob);
+        const a = document.createElement("a");
+        a.href = blobUrl;
+        a.download = RESUME_FILENAME;
+        a.style.display = "none";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
+      })
+      .catch(() => {
+        window.location.href = url;
+      });
+  }
+}
+
 function Hero({ videoSrc, posterSrc }) {
   const videoRef = useRef(null);
   const [loaded, setLoaded] = useState(false);
@@ -218,9 +256,10 @@ function Hero({ videoSrc, posterSrc }) {
         </div>
         <a
           className="liquid-glass btn-pill sm animate-fade-rise-delay-2 hero-cta-download nav"
-          href="assets/resume-liangxiaoting-13522341227.pdf"
-          download="梁小婷-13522341227-Resume.pdf"
-          target="_blank"
+          href={RESUME_PDF}
+          download={RESUME_FILENAME}
+          type="application/pdf"
+          onClick={handleResumeDownload}
           rel="noopener">
           <svg className="dl-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
             <path d="M12 4v12" />

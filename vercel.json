@@ -1,0 +1,17 @@
+{
+  "headers": [
+    {
+      "source": "/assets/(.*\\.pdf)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/pdf"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "attachment; filename=\"liang-xiaoting-resume.pdf\"; filename*=UTF-8''%E6%A2%81%E5%B0%8F%E5%A9%B7-resume.pdf"
+        }
+      ]
+    }
+  ]
+}
