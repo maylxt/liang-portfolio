@@ -7,43 +7,178 @@ const { useState, useEffect, useRef } = React;
    ============================================================ */
 const XHS_URL = "https://www.xiaohongshu.com/user/profile/5aebdcee4eacab19e4f586b4";
 
+function formatVideoTime(sec) {
+  if (!Number.isFinite(sec) || sec < 0) return "0:00";
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  return `${m}:${String(s).padStart(2, "0")}`;
+}
+
 function VisionFeaturedVideo({ video }) {
   const videoRef = useRef(null);
-  const [playing, setPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [started, setStarted] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [volume, setVolume] = useState(0.85);
+  const [muted, setMuted] = useState(false);
 
-  const handlePlay = () => {
+  useEffect(() => {
     const el = videoRef.current;
     if (!el) return;
+
+    const onTimeUpdate = () => setProgress(el.currentTime);
+    const onLoadedMetadata = () => setDuration(el.duration || 0);
+    const onPlay = () => setIsPlaying(true);
+    const onPause = () => setIsPlaying(false);
+    const onEnded = () => setIsPlaying(false);
+
+    el.volume = volume;
+    el.addEventListener("timeupdate", onTimeUpdate);
+    el.addEventListener("loadedmetadata", onLoadedMetadata);
+    el.addEventListener("play", onPlay);
+    el.addEventListener("pause", onPause);
+    el.addEventListener("ended", onEnded);
+
+    return () => {
+      el.removeEventListener("timeupdate", onTimeUpdate);
+      el.removeEventListener("loadedmetadata", onLoadedMetadata);
+      el.removeEventListener("play", onPlay);
+      el.removeEventListener("pause", onPause);
+      el.removeEventListener("ended", onEnded);
+    };
+  }, [volume]);
+
+  const handleInitialPlay = () => {
+    const el = videoRef.current;
+    if (!el) return;
+    setStarted(true);
     el.play().catch(() => {});
-    setPlaying(true);
   };
 
-  const handleStop = () => setPlaying(false);
+  const togglePlay = () => {
+    const el = videoRef.current;
+    if (!el) return;
+    if (el.paused) el.play().catch(() => {});
+    else el.pause();
+  };
+
+  const handleSeek = (e) => {
+    const el = videoRef.current;
+    const t = parseFloat(e.target.value);
+    if (!el || !Number.isFinite(t)) return;
+    el.currentTime = t;
+    setProgress(t);
+  };
+
+  const handleVolume = (e) => {
+    const el = videoRef.current;
+    const v = parseFloat(e.target.value);
+    if (!el || !Number.isFinite(v)) return;
+    el.volume = v;
+    el.muted = v === 0;
+    setVolume(v);
+    setMuted(v === 0);
+  };
+
+  const toggleMute = () => {
+    const el = videoRef.current;
+    if (!el) return;
+    if (el.muted || el.volume === 0) {
+      const next = volume > 0 ? volume : 0.85;
+      el.muted = false;
+      el.volume = next;
+      setVolume(next);
+      setMuted(false);
+    } else {
+      el.muted = true;
+      setMuted(true);
+    }
+  };
 
   return (
     <article className="vision-featured-video">
-      <div className={`vision-featured-video__player${playing ? " is-playing" : ""}`}>
+      <div className={`vision-featured-video__player${started ? " is-started" : ""}${isPlaying ? " is-playing" : ""}`}>
         <video
           ref={videoRef}
           className="vision-featured-video__media"
           src={video.src}
           poster={video.poster}
           playsInline
-          controls={playing}
           preload="metadata"
-          onEnded={handleStop}
-          onPause={handleStop}
+          disablePictureInPicture
+          controlsList="nodownload noplaybackrate noremoteplayback"
         />
-        {!playing && (
+        {!isPlaying && (
           <button
             type="button"
             className="vision-featured-video__play"
-            onClick={handlePlay}
-            aria-label={`播放 ${video.title}`}>
+            onClick={started ? togglePlay : handleInitialPlay}
+            aria-label={started ? "继续播放" : `播放 ${video.title}`}>
             <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden>
               <path d="M8 5.14v13.72L19 12 8 5.14Z" />
             </svg>
           </button>
+        )}
+        {started && (
+          <div className="vision-featured-video__bar">
+            <button
+              type="button"
+              className="vision-featured-video__ctl"
+              onClick={togglePlay}
+              aria-label={isPlaying ? "暂停" : "播放"}>
+              {isPlaying ? (
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden>
+                  <path d="M7 5h3v14H7V5Zm7 0h3v14h-3V5Z" />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden>
+                  <path d="M8 5.14v13.72L19 12 8 5.14Z" />
+                </svg>
+              )}
+            </button>
+            <label className="vision-featured-video__scrub">
+              <span className="sr-only">播放进度</span>
+              <input
+                type="range"
+                min={0}
+                max={duration || 0}
+                step={0.1}
+                value={Math.min(progress, duration || 0)}
+                onChange={handleSeek}
+              />
+            </label>
+            <span className="vision-featured-video__time">
+              {formatVideoTime(progress)} / {formatVideoTime(duration)}
+            </span>
+            <button
+              type="button"
+              className="vision-featured-video__ctl"
+              onClick={toggleMute}
+              aria-label={muted ? "取消静音" : "静音"}>
+              {muted || volume === 0 ? (
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden>
+                  <path d="M11 5 6 9H3v6h3l5 4V5Zm9.59 3.41L18.17 8.83 16 11l2.17 2.17-1.41 1.42L14.59 12.4 12.41 14.6l1.42 1.41L16 13.83l2.17 2.17 1.42-1.41L17.41 12l2.18-2.17-1.42-1.42Z" />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden>
+                  <path d="M11 5 6 9H3v6h3l5 4V5Zm4.5 7c0-1.77-1.02-3.29-2.5-4.03v8.06c1.48-.74 2.5-2.26 2.5-4.03ZM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77Z" />
+                </svg>
+              )}
+            </button>
+            <label className="vision-featured-video__volume-wrap">
+              <span className="sr-only">音量</span>
+              <input
+                type="range"
+                className="vision-featured-video__volume"
+                min={0}
+                max={1}
+                step={0.05}
+                value={muted ? 0 : volume}
+                onChange={handleVolume}
+              />
+            </label>
+          </div>
         )}
       </div>
       <div className="vision-featured-video__meta">
