@@ -84,9 +84,21 @@ function VisionSection({ items, video }) {
           </div>
         </div>
 
+        {video ? (
+          <div className="vision-block vision-block--video">
+            <header className="vision-block-head">
+              <span className="vision-block-num">A · VIDEO</span>
+              <h3 className="vision-block-title"><span className="acc">AI 视频</span></h3>
+              <span className="vision-block-en">AIGC SHORT FILM · MOTION VISUAL</span>
+              <span className="vision-block-rule" aria-hidden />
+            </header>
+            <VisionFeaturedVideo video={video} />
+          </div>
+        ) : null}
+
         <div className="vision-block vision-block--visual">
           <header className="vision-block-head">
-            <span className="vision-block-num">A · VISUAL</span>
+            <span className="vision-block-num">B · VISUAL</span>
             <h3 className="vision-block-title"><span className="acc">AI 视觉</span></h3>
             <span className="vision-block-en">VERTICAL POSTER · BRAND KV · IP DESIGN</span>
             <span className="vision-block-rule" aria-hidden />
@@ -126,18 +138,6 @@ function VisionSection({ items, video }) {
           <span className="xhs-strip-url">@梁小婷 · xiaohongshu.com/user/profile</span>
           <span className="xhs-strip-arrow">↗</span>
         </a>
-
-        {video ? (
-          <div className="vision-block vision-block--video">
-            <header className="vision-block-head">
-              <span className="vision-block-num">B · VIDEO</span>
-              <h3 className="vision-block-title"><span className="acc">AI 视频</span></h3>
-              <span className="vision-block-en">AIGC SHORT FILM · MOTION VISUAL</span>
-              <span className="vision-block-rule" aria-hidden />
-            </header>
-            <VisionFeaturedVideo video={video} />
-          </div>
-        ) : null}
       </div>
     </section>
   );
