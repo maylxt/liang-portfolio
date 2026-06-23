@@ -67,7 +67,7 @@ const VISION_VIDEO = {
   poster: "assets/vision-ok-poster.jpg",
   title: "GLITCH GIRLS · AI 视频短片",
   duration: "0:25",
-  desc: "AIGC 创作的赛博朋克风格视频短片。以动态径向模糊与彩虹光轨营造高速穿梭的数字化幻境，双辫人物造型与工业场景强化未来感叙事，探索 AI 生成在角色视频与氛围光影上的表达边界。",
+  desc: "本片为女团概念 MV，以成员群像与单人特写呈现多元造型与表演张力。整体采用冷调低照度布光，结合复古电视机、数字故障与镜面反射丰富画面层次；群像与特写交替控制节奏，形成复古媒介与未来造型并置的 Y2K 赛博视觉风格。",
 };
 
 /* Effects — 4 sub-modules under the same section */
