@@ -2355,9 +2355,19 @@ html.art-cursor-press .art-cursor.dot {
   margin: 0;
   font-size: clamp(24px, 2.4vw, 32px);
   font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
+  line-height: 1.2;
   color: var(--fg);
+}
+.vision-featured-video__title-en {
+  font-family: var(--font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.vision-featured-video__title-cn {
+  margin-left: 0.4em;
+  letter-spacing: 0.04em;
+  font-weight: 600;
 }
 .vision-featured-video__duration {
   margin: 10px 0 0;

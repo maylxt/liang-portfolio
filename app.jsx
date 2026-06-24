@@ -65,7 +65,8 @@ const VISION_ITEMS = [
 const VISION_VIDEO = {
   src: "assets/vision-ok.mp4",
   poster: "assets/vision-ok-poster.jpg",
-  title: "GLITCH GIRLS · AI 视频短片",
+  title: "GLITCH GIRLS · AI",
+  titleCn: "视频短片",
   duration: "0:25",
   desc: "本片为女团概念 MV，以「虚拟与现实交叠的自我表达」为主线，借复古电视屏与数字故障构建虚实交错空间。从分镜、美术到布光统筹，群像与特写呈现多重面貌，配合冷调调色与切镜节奏，营造冷冽迷幻的 Y2K 赛博氛围，传递虚实之间率性而张扬的自我态度。",
 };

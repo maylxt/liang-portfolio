@@ -41,7 +41,7 @@ function VisionFeaturedVideo({ video }) {
             type="button"
             className="vision-featured-video__play"
             onClick={handlePlay}
-            aria-label={`播放 ${video.title}`}>
+            aria-label={`播放 ${video.titleEn || video.title}`}>
             <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden>
               <path d="M8 5.14v13.72L19 12 8 5.14Z" />
             </svg>
@@ -50,7 +50,10 @@ function VisionFeaturedVideo({ video }) {
       </div>
       <div className="vision-featured-video__meta">
         <span className="vision-featured-video__tag">VIDEO · AIGC</span>
-        <h3 className="vision-featured-video__title">{video.title}</h3>
+        <h3 className="vision-featured-video__title">
+          <span className="vision-featured-video__title-en">{video.titleEn || video.title}</span>
+          {video.titleCn ? <span className="vision-featured-video__title-cn">{video.titleCn}</span> : null}
+        </h3>
         <p className="vision-featured-video__duration">时长 · {video.duration}</p>
         <p className="vision-featured-video__desc">{video.desc}</p>
       </div>
