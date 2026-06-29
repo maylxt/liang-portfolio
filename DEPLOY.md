@@ -16,8 +16,12 @@ styles.css
 app.jsx
 components/
 assets/
+vendor/          ← React、Babel（已自托管，国内可访问）
 robots.txt
 ```
+
+**国内正式环境（腾讯云）：** 见 **[DEPLOY-TENCENT.md](./DEPLOY-TENCENT.md)**。  
+**国内方案对比：** 见 [DEPLOY-CN.md](./DEPLOY-CN.md)。
 
 **不要上传：** `node_modules/`、`scripts/`、`exports/`、`tweaks-panel.jsx`、`resume-download.html`、`package.json`
 
@@ -39,10 +43,14 @@ robots.txt
 
 ## 方式三：国内静态托管（阿里云 OSS / 腾讯云 COS）
 
-1. 把上述文件上传到 Bucket
+**完整步骤见 [DEPLOY-CN.md](./DEPLOY-CN.md)**（备案、CDN、HTTPS、上传清单、双线路部署）。
+
+简要：
+
+1. 把上述文件（含 `vendor/`）上传到 Bucket
 2. 开启「静态网站托管」，默认首页 `index.html`
-3. 绑定 CDN + 域名，开启 HTTPS
-4. 注意：国外 CDN 访问 Google Fonts 可能慢，必要时改自托管字体
+3. 完成 ICP 备案后绑定 CDN + 域名，开启 HTTPS
+4. 修改 `index.html` 中 `og:url` / `og:image` 为国内域名
 
 ## 部署后必做
 

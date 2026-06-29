@@ -4,3 +4,6 @@ exports/
 *.log
 uploads/
 .cursor/
+site-cn.zip
+.env.cos
+.tmp_mv_frames/

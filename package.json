@@ -5,9 +5,16 @@
   "scripts": {
     "pdf": "node scripts/capture-site-pdf.mjs",
     "pdf:simple": "node scripts/generate-resume-pdf.mjs",
-    "pdf:resume": "node scripts/generate-resume-download.mjs"
+    "pdf:resume": "node scripts/generate-resume-download.mjs",
+    "vendor:fonts": "node scripts/copy-vendor-fonts.mjs",
+    "upload:cos": "node scripts/upload-cos.mjs"
   },
   "devDependencies": {
+    "@fontsource-variable/fraunces": "^5.2.9",
+    "@fontsource/instrument-serif": "^5.2.8",
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/jetbrains-mono": "^5.2.8",
+    "cos-nodejs-sdk-v5": "^2.15.4",
     "pdf-lib": "^1.17.1",
     "puppeteer": "^24.2.0"
   }
